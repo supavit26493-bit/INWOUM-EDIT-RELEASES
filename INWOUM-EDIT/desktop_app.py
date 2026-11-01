@@ -4,12 +4,22 @@ from pathlib import Path
 import runtime_session as session
 ROOT=Path(__file__).resolve().parent
 
+APP_ID='INWOUM.EDIT.Desktop'
+
+def set_app_id():
+ if os.name!='nt':return
+ import ctypes
+ call=ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID
+ call.argtypes=[ctypes.c_wchar_p];call.restype=ctypes.c_long
+ if call(APP_ID)!=0:raise OSError('Cannot set INWOUM EDIT taskbar identity')
+
 def run(port=8776):
  if os.name!='nt':raise RuntimeError('รุ่นเดสก์ท็อปนี้รองรับ Windows กรุณาใช้ START-WEB.cmd')
  guard=session.Lock(ROOT,'desktop')
  if not guard.acquire():
   message('แอป INWOUM EDIT เปิดอยู่แล้ว กรุณาเลือกหน้าต่างเดิมจากแถบงาน');return
  try:
+  set_app_id()
   import webview
   url=session.ensure(ROOT,port)
   profile=session.home(ROOT)/'desktop-profile';profile.mkdir(parents=True,exist_ok=True)
@@ -19,7 +29,7 @@ def run(port=8776):
   window=webview.create_window('INWOUM EDIT',url,width=1380,height=900,min_size=(820,620),background_color='#252c34',text_select=True,zoomable=True)
   window.events.closed += guard.release
   # No Python/JavaScript bridge is exposed. The UI uses the same authenticated local HTTP API.
-  webview.start(gui='edgechromium',private_mode=False,storage_path=str(profile),debug=False)
+  webview.start(gui='edgechromium',private_mode=False,storage_path=str(profile),debug=False,icon=str(ROOT/'assets/inwoumedit.ico'))
  finally:guard.release()
 
 def message(text):

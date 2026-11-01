@@ -1,15 +1,14 @@
 {
   "product": "INWOUM EDIT",
-  "version": "0.15.22",
+  "version": "0.15.23",
   "automated_tests_passed": 461,
   "checks": [
-    "Windows desktop window opens",
-    "Browser and desktop reuse the same backend",
-    "Duplicate backend startup prevented",
-    "Unrelated occupied port is not reused",
-    "XML download equals source bytes",
-    "Closing the desktop leaves backend running",
-    "Desktop can be reopened"
+    "Multi-size ICO loads on Windows",
+    "Launcher contains embedded Play icon",
+    "Launcher validates program folder",
+    "Desktop passes custom icon to WebView2",
+    "Shared editing backend and persistent profile retained",
+    "Opened INWOUMEDIT.exe and visually verified Play icon on desktop window"
   ],
   "paid_openai_calls": 0
 }

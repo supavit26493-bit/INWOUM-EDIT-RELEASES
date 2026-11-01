@@ -36,9 +36,9 @@ class DesktopSessionTests(unittest.TestCase):
   import desktop_app
   with tempfile.TemporaryDirectory() as tmp,patch.object(desktop_app.os,'name','nt'),patch('runtime_session.home',return_value=Path(tmp)),patch('runtime_session.ensure',return_value='http://127.0.0.1:8776'),patch('runtime_session.Lock') as lock:
    lock.return_value.acquire.return_value=True;webview=MagicMock();webview.settings={}
-   with patch.dict('sys.modules',webview=webview):desktop_app.run()
+   with patch.dict('sys.modules',webview=webview),patch('desktop_app.set_app_id'):desktop_app.run()
    self.assertTrue(webview.settings['ALLOW_DOWNLOADS']);self.assertFalse(webview.settings['ALLOW_FILE_URLS'])
-   self.assertEqual(webview.start.call_args.kwargs['gui'],'edgechromium');self.assertFalse(webview.start.call_args.kwargs['private_mode']);self.assertNotIn('js_api',webview.create_window.call_args.kwargs);lock.return_value.release.assert_called_once()
+   self.assertTrue(webview.start.call_args.kwargs['icon'].endswith('inwoumedit.ico'));self.assertEqual(webview.start.call_args.kwargs['gui'],'edgechromium');self.assertFalse(webview.start.call_args.kwargs['private_mode']);self.assertNotIn('js_api',webview.create_window.call_args.kwargs);lock.return_value.release.assert_called_once()
  def test_duplicate_backend_returns_before_reading_or_interrupting_jobs(self):
   import server
   with patch('sys.argv',['server.py','--no-browser']),patch('runtime_session.Lock') as lock,patch('runtime_session.existing',return_value=dict(url='http://127.0.0.1:8776')),patch.object(server.JOB_ROOT.__class__,'glob',side_effect=AssertionError('Must not reread running jobs')):
