@@ -1,0 +1,5 @@
+Grassland UI fonts (bundled, no external font requests):
+Pixelify Sans: https://github.com/google/fonts/tree/main/ofl/pixelifysans
+Chakra Petch (Thai): https://github.com/google/fonts/tree/main/ofl/chakrapetch
+SIL Open Font License files included alongside each font.
+Fonts affect web UI only, not exported SRT or Super fonts.

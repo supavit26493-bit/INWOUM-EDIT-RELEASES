@@ -1,0 +1,15 @@
+**/jobs/
+**/.venv/
+**/models/
+**/cache/
+**/backups/
+**/.updates/
+**/__pycache__/
+**/*.pyc
+**/local-runtime.json
+**/.env
+**/.env.*
+**/publisher-private/
+**/release-key.xml
+**/CONVERSATION-CONTEXT.md
+**/HANDOFF-NEW-PC.md

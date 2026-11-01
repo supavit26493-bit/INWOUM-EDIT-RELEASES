@@ -1,0 +1,5 @@
+/* Decorative companion artwork only. Existing job text and controls are intact. */
+html[data-neo-theme] body .inwoum-mascot-row canvas.neo-companion-canvas{display:none;width:72px;height:64px;flex:0 0 72px;image-rendering:auto;animation:none!important;transform:none!important;filter:none!important}
+html:is([data-neo-mascot=cat],[data-neo-mascot=slime_soft],[data-neo-mascot=bot])[data-neo-theme] body .inwoum-mascot-row canvas.neo-companion-canvas{display:block}
+html:is([data-neo-mascot=cat],[data-neo-mascot=slime_soft],[data-neo-mascot=bot])[data-neo-theme] body .inwoum-mascot-row .neo-orb-stage{display:none}
+@media(max-width:640px){html[data-neo-theme] body .inwoum-mascot-row canvas.neo-companion-canvas{width:60px;height:54px;flex-basis:60px}}

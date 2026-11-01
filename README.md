@@ -1,7 +1,24 @@
-# INWOUM EDIT Releases
+# INWOUM EDIT
 
-Official update packages for INWOUM EDIT.
+ซอร์สโปรแกรมเวอร์ชัน **0.15.21** และชุดอัปเดตสำหรับทีม
 
-Use the Update button in INWOUM EDIT 0.15.20 or newer. Each release includes a TEAM.zip package and a signed update.json descriptor.
+## ดาวน์โหลดโปรแกรม
 
-Existing jobs, local models, Python environments, and browser-saved API keys stay on each computer.
+ใช้ [Release ล่าสุด](https://github.com/supavit26493-bit/INWOUM-EDIT-RELEASES/releases/latest)
+
+- `TEAM.zip`: ติดตั้งเครื่องใหม่
+- `UPDATE.zip`: อัปเดตเครื่องเดิมที่ยังไม่มีปุ่มอัปเดต
+- `update.json`: ข้อมูลพร้อมลายเซ็นสำหรับปุ่มอัปเดต ไม่ต้องเปิดเอง
+
+## โค้ดโปรแกรม
+
+โค้ดในโฟลเดอร์ [INWOUM-EDIT](INWOUM-EDIT) ตรงกับรายการไฟล์และ SHA-256 ใน `INSTALL-MANIFEST.json` ของชุด 0.15.21
+อ่านคู่มือในโฟลเดอร์โปรแกรม จากนั้นเปิด `SETUP.cmd` ครั้งแรก และ `START.cmd` เพื่อใช้งาน
+
+ประวัติ Commit ใช้ดูความเปลี่ยนแปลงและเรียกดูซอร์สของแต่ละรุ่นได้
+ไฟล์แนบใน Releases เป็นชุดสำหรับแจกใช้งาน ส่วน Source code ZIP ที่ GitHub สร้างเป็นสำเนา repository
+
+## ข้อมูลที่ไม่เก็บใน repository
+
+ไม่รวมงานตัดต่อ ฟุตเทจ API key, `.venv`, โมเดลที่ดาวน์โหลด การตั้งค่าเฉพาะเครื่อง และกุญแจส่วนตัวสำหรับเซ็นอัปเดต
+ไฟล์ `tests/update-test-key.xml` เป็นกุญแจจำลองสำหรับทดสอบเท่านั้น ไม่ใช่กุญแจผู้เผยแพร่จริง

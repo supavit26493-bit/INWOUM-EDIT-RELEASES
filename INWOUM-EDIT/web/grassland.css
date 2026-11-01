@@ -1,0 +1,68 @@
+/* Grassland presentation only. Font data is embedded by the release builder. */
+:root[data-neo-theme=grassland]{--bg:#342b20!important;--panel:#dad7cc!important;--line:#9b9c8c!important;--muted:#51584a!important;--green:#436a2a!important;--accent:#436a2a!important;--play-soft:#cbd5b8!important;--play-deep:#dad7cc!important;--neo-text:#282c23;--neo-raised:#e3e4d3;--neo-dark:#858b79;--neo-light:#f5f2df;--neo-field:#f0eee5;--neo-accent:#83b84b;--neo-on-accent:#213518;--neo-shadow:inset 3px 3px #f5f2df,inset -3px -3px #969987,4px 5px #171c1766;--neo-inset:inset 2px 2px #b0b5a0;--grass-font:'Inwoum Pixel','Inwoum Block Thai',system-ui,sans-serif;color-scheme:light;scrollbar-color:#8b9879 #303a26;scrollbar-width:auto}
+html[data-neo-theme=grassland] body{font-family:var(--grass-font);font-size:16px;background-color:var(--bg);background-image:repeating-linear-gradient(90deg,transparent 0 61px,#ffffff04 61px 64px),repeating-linear-gradient(0deg,transparent 0 61px,#00000016 61px 64px);color:var(--neo-text)}
+html[data-neo-theme=grassland] body header{position:relative;background:#aacede;border:0;border-bottom:22px solid #6b5236;box-shadow:inset 0 -10px #517b32,0 5px #221d1666;max-width:none;padding:32px max(28px,calc((100% - 1180px)/2));min-height:190px;isolation:isolate;overflow:hidden}
+html[data-neo-theme=grassland] body header::after{content:"";position:absolute;z-index:-1;right:30%;top:18px;width:64px;height:16px;background:#eaf3ee;box-shadow:16px 8px #eaf3ee,32px 8px #eaf3ee;opacity:.65}
+html[data-neo-theme=grassland] body header h1{font:700 clamp(28px,4vw,48px)/1.2 'Inwoum Pixel',monospace;letter-spacing:-.035em;display:flex;color:#f1f1e8;gap:7px;text-shadow:2px 0 #434a3e,-2px 0 #434a3e,0 -2px #434a3e,0 2px #434a3e,3px 5px #39412e}
+html[data-neo-theme=grassland] body header h1 span{color:#f1f1e8!important}
+html[data-neo-theme=grassland] body header h1::before{border-radius:0;background-color:#44692f;width:26px;height:26px;margin-right:8px}
+html[data-neo-theme=grassland] body header small{color:#334d4a;font-family:var(--grass-font);font-size:13px}
+html[data-neo-theme=grassland] body h2,html[data-neo-theme=grassland] body h3,html[data-neo-theme=grassland] body label{font-family:var(--grass-font);color:var(--neo-text)}
+html[data-neo-theme=grassland] body .panel{border:3px solid #303629;border-radius:0;background:var(--panel);box-shadow:var(--neo-shadow);padding:24px}
+html[data-neo-theme=grassland] body button,html[data-neo-theme=grassland] body a.button{font-family:var(--grass-font);font-size:16px;border:2px solid #303629;border-radius:0;background:#b3b5a8;color:#282c23;box-shadow:inset 3px 3px #eeeece88,inset -3px -3px #686e5e88,0 3px #1e201b;transition:background-color .1s,transform .1s}
+html[data-neo-theme=grassland] body button:not(:disabled):hover,html[data-neo-theme=grassland] body a.button:not([aria-disabled=true]):hover{background:#c7cbb8;border-color:#303629;box-shadow:inset 3px 3px #eeeece88,inset -3px -3px #686e5e88,0 3px #1e201b;transform:none}
+html[data-neo-theme=grassland] body button:not(:disabled):active,html[data-neo-theme=grassland] body a.button:not([aria-disabled=true]):active{transform:translateY(3px);box-shadow:inset 3px 3px #686e5e88,inset -2px -2px #eeeece55}
+html[data-neo-theme=grassland] body .primary,html[data-neo-theme=grassland] body .primary:hover,html[data-neo-theme=grassland] body #noobDownload.inwoum-download-ready,html[data-neo-theme=grassland] body a.button.inwoum-download-ready{background:#83b84b!important;color:#213518!important;border-color:#303629!important;box-shadow:inset 3px 3px #c9e591,inset -3px -3px #4a762c,0 3px #24391a!important}
+html[data-neo-theme=grassland] body input,html[data-neo-theme=grassland] body select,html[data-neo-theme=grassland] body textarea{font-family:var(--grass-font);font-size:16px;border:2px solid #7a816d;border-radius:0;background:#f0eee5;color:var(--neo-text);box-shadow:inset 2px 2px #bcc1b2;padding:11px 12px}
+html[data-neo-theme=grassland] body option{font-family:var(--grass-font);background:#d6d9c8;color:#282c23;padding:10px}
+html[data-neo-theme=grassland] body option:checked{background:#516b3a;color:#fff}
+html[data-neo-theme=grassland] body input[type=checkbox],html[data-neo-theme=grassland] body input[type=radio]{box-shadow:none;accent-color:#5b8437}
+html[data-neo-theme=grassland] body .mode-tabs{background:transparent;border:0;border-radius:0;box-shadow:none;padding:0;gap:8px}
+html[data-neo-theme=grassland] body .mode-tabs button{font-family:var(--grass-font);border:2px solid #303629;border-radius:0;padding:9px 25px;background:#b3b5a8;box-shadow:inset 3px 3px #eeeece88,inset -3px -3px #686e5e88,0 3px #1e201b}
+html[data-neo-theme=grassland] body .mode-tabs button[aria-selected=true],html[data-neo-theme=grassland] body .neo-task[aria-pressed=true]{background:#83b84b;color:#213518;box-shadow:inset 3px 3px #c9e591,inset -3px -3px #4a762c,0 3px #24391a}
+html[data-neo-theme=grassland] body .mode-bar{margin-top:28px}
+html[data-neo-theme=grassland] body .neo-tasks{gap:10px}
+html[data-neo-theme=grassland] body .neo-task{border:2px solid #303629;border-radius:0;min-height:76px;padding:12px;gap:8px}
+html[data-neo-theme=grassland] body .neo-task-icon{background:transparent;box-shadow:none;border-radius:0;width:26px;height:30px;color:#3f5b2c}
+html[data-neo-theme=grassland] body .neo-task[aria-pressed=true] .neo-task-icon{background:transparent}
+html[data-neo-theme=grassland] body .neo-task b{font-family:var(--grass-font);font-size:15px;font-weight:600}
+html[data-neo-theme=grassland] body .neo-task small{font-family:var(--grass-font);font-size:12px;color:#37462d}
+html[data-neo-theme=grassland] body .noob-intro h2,html[data-neo-theme=grassland] body .noob-intro p,html[data-neo-theme=grassland] body .noob-intro .pixel-kicker{color:#e1e6d6;font-family:var(--grass-font)}
+html[data-neo-theme=grassland] body .pixel-kicker,html[data-neo-theme=grassland] body .card-caption{font-family:var(--grass-font);font-size:13px}
+html[data-neo-theme=grassland] body .noob-footer{color:#c6ceba;font-family:var(--grass-font)}
+html[data-neo-theme=grassland] body .content-mode-panel{background:transparent;box-shadow:none;border:0}
+html[data-neo-theme=grassland] body .neo-sales-style{background:var(--panel);border:3px solid #303629;border-radius:0;box-shadow:var(--neo-shadow)}
+html[data-neo-theme=grassland] body .neo-header-preferences{background:var(--panel);border:2px solid #303629;border-radius:0;box-shadow:var(--neo-shadow)}
+html[data-neo-theme=grassland] body .neo-header-version,html[data-neo-theme=grassland] body .badge,html[data-neo-theme=grassland] body .noob-state-tag{background:transparent;border-radius:0;box-shadow:none;color:#51584a;font-family:var(--grass-font)}
+html[data-neo-theme=grassland] body .inwoum-theme-control:has(#inwoumTheme){display:none}
+html[data-neo-theme=grassland] body .pro-progress,html[data-neo-theme=grassland] body .token-panel,html[data-neo-theme=grassland] body .subtitle-rules,html[data-neo-theme=grassland] body .inwoum-mascot-row,html[data-neo-theme=grassland] body .key-controls [role=status]{border:2px solid #adb39e;border-radius:0;box-shadow:inset 2px 2px #c5cab9;background:#d0d5c2}
+html[data-neo-theme=grassland] body .pro-progress-track{background:#444c3a;border:0;border-radius:0;box-shadow:none;height:12px}
+html[data-neo-theme=grassland] body #proProgressFill,html[data-neo-theme=grassland] body #noobProgressFill,html[data-neo-theme=grassland] body #subtitleFill{background:repeating-linear-gradient(90deg,#92d34f 0 15px,#5d912d 15px 18px);border-radius:0;transition:width .3s steps(12)}
+html[data-neo-theme=grassland] body .token-values strong,html[data-neo-theme=grassland] body .token-cost strong,html[data-neo-theme=grassland] body .stat strong,html[data-neo-theme=grassland] body #noobElapsed,html[data-neo-theme=grassland] body #noobPercent,html[data-neo-theme=grassland] body #subtitleClock,html[data-neo-theme=grassland] body #subtitlePercent{font-family:var(--grass-font);font-variant-numeric:tabular-nums;color:#365525}
+html[data-neo-theme=grassland] body .subtitle-tool{border:2px solid #747d66;border-radius:0;box-shadow:inset 2px 2px #eef1df,inset -2px -2px #a2ad92;background:#cbd3bc}
+html[data-neo-theme=grassland] body .subtitle-tool:has(input:checked){background:#b2cb96;border-color:#496438}
+html[data-neo-theme=grassland] body .subtitle-tool b{font-family:var(--grass-font)}
+html[data-neo-theme=grassland] body .subtitle-tool em{font-family:var(--grass-font);color:#355326;border-radius:0}
+html[data-neo-theme=grassland] body .neo-orb-body{border-radius:0;background:#83b953;border:3px solid #38582c;box-shadow:inset 4px 4px #b0d27a,inset -4px -4px #5f8b3c,4px 4px #252d1933}
+html[data-neo-theme=grassland] body .neo-orb-eye{border-radius:0;background:#26351f;box-shadow:none}
+html[data-neo-theme=grassland] body .neo-orb-glint{display:none}
+html[data-neo-theme=grassland] body .neo-orb-mouth{border-color:#26351f;border-radius:0}
+html[data-neo-theme=grassland] body .neo-orb-shadow{border-radius:0;filter:none;opacity:.18}
+html[data-neo-theme=grassland] body .inwoum-mascot-row[data-state=done] .neo-orb-eye{background:transparent;border-radius:0;border-color:#26351f}
+html[data-neo-theme=grassland] body .noob-error,html[data-neo-theme=grassland] body .error{color:#9d2924!important}
+html[data-neo-theme=grassland] body dialog{font-family:var(--grass-font);color:var(--neo-text);background:var(--panel);border:3px solid #303629;border-radius:0;box-shadow:var(--neo-shadow)}
+html[data-neo-theme=grassland] *{scrollbar-color:#8b9879 #303a26;scrollbar-width:auto}
+html[data-neo-theme=grassland] ::-webkit-scrollbar{width:14px;height:14px}
+html[data-neo-theme=grassland] ::-webkit-scrollbar-track{background:#303a26}
+html[data-neo-theme=grassland] ::-webkit-scrollbar-thumb{background:#8b9879;border:3px solid #303a26;border-radius:0;box-shadow:inset 2px 2px #b8c0a8,inset -2px -2px #5c6d4d}
+html[data-neo-theme=grassland] ::-webkit-scrollbar-thumb:hover{background:#a8b58e}
+html[data-neo-theme=grassland] ::-webkit-scrollbar-corner{background:#303a26}
+@supports (appearance:base-select){
+ html[data-neo-theme=grassland] body select,html[data-neo-theme=grassland] body select::picker(select){appearance:base-select}
+ html[data-neo-theme=grassland] body select::picker(select){font-family:var(--grass-font);font-size:16px;background:#d6d9c8;color:#282c23;border:3px solid #303629;border-radius:0;box-shadow:inset 2px 2px #f3f3e4,4px 5px #1e201b66;padding:4px;scrollbar-color:#8b9879 #303a26;scrollbar-width:auto}
+ html[data-neo-theme=grassland] body select option{font-family:var(--grass-font);font-size:16px;border-radius:0;padding:10px 12px;background:#d6d9c8;color:#282c23}
+ html[data-neo-theme=grassland] body select option:hover{background:#b9c9a2}
+ html[data-neo-theme=grassland] body select option:checked{background:#516b3a;color:#fff;box-shadow:inset 2px 2px #718a57}
+ html[data-neo-theme=grassland] body select::picker-icon{color:#38582c}
+}
+@media(max-width:900px){html[data-neo-theme=grassland] body header{flex-wrap:wrap;padding:28px}html[data-neo-theme=grassland] body .neo-tasks{gap:10px}html[data-neo-theme=grassland] body .neo-task{padding:12px}}

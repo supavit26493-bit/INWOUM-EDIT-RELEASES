@@ -1,0 +1,8 @@
+/* Switch only decorative artwork. Text, status and job controls stay untouched. */
+html[data-neo-theme] body .inwoum-mascot-row canvas.neo-slime-canvas{display:none;width:96px;height:68px;flex:0 0 96px;image-rendering:pixelated;image-rendering:crisp-edges;animation:none!important;transform:none!important;filter:none!important}
+html[data-neo-mascot=slime][data-neo-theme] body .inwoum-mascot-row canvas.neo-slime-canvas{display:block}
+html[data-neo-mascot=slime][data-neo-theme] body .inwoum-mascot-row .neo-orb-stage{display:none}
+html[data-neo-theme] body .neo-header-fields{flex-wrap:wrap}
+html[data-neo-theme] body .inwoum-theme-control:has(#neoMascot){min-width:86px}
+html[data-neo-theme] body #neoMascot{min-width:96px}
+@media(max-width:640px){html[data-neo-theme] body .inwoum-mascot-row canvas.neo-slime-canvas{width:72px;height:51px;flex-basis:72px}html[data-neo-theme] body .neo-header-fields{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}html[data-neo-theme] body #neoMascot{width:100%;min-width:0}}

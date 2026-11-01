@@ -1,0 +1,57 @@
+/* Presentation only. This scope leaves Soft Dark and Soft Light untouched. */
+:root[data-neo-theme=white-signal]{--bg:#e0e5ed!important;--panel:#e7ebf2!important;--line:#b6c5df!important;--muted:#455b84!important;--green:#1748e9!important;--accent:#1748e9!important;--play-soft:#dce4f3!important;--play-deep:#e0e5ed!important;--neo-text:#14254d;--neo-raised:#edf1f8;--neo-dark:#c1cde0;--neo-light:#f5f8ff;--neo-field:#edf1f7;--neo-accent:#1748e9;--neo-on-accent:#fff;--neo-shadow:none;--neo-inset:none;color-scheme:light}
+html[data-neo-theme=white-signal] body{color:var(--neo-text);background-color:var(--bg);background-image:linear-gradient(90deg,#1748e908 1px,transparent 1px),linear-gradient(#1748e908 1px,transparent 1px);background-size:24px 24px}
+html[data-neo-theme=white-signal] body header{position:relative;isolation:isolate;overflow:hidden;padding-top:40px;padding-bottom:32px;border-bottom:1px solid var(--line);min-height:180px;max-width:1180px}
+html[data-neo-theme=white-signal] body header::after{content:"";position:absolute;z-index:-1;width:420px;height:420px;border-radius:50%;border:1px solid #1748e933;left:27%;top:-190px;background:radial-gradient(circle,transparent 47%,#1748e922 47.2%,transparent 47.5%,transparent 60%,#1748e922 60.2%,transparent 60.5%);pointer-events:none}
+html[data-neo-theme=white-signal] body header h1{font:400 clamp(32px,4.6vw,62px)/1.05 Didot,'Bodoni MT','Times New Roman',serif;letter-spacing:-.05em;color:var(--green);gap:6px;flex-wrap:wrap}
+html[data-neo-theme=white-signal] body header h1::before{width:22px;height:22px;margin-right:8px;border-radius:0}
+html[data-neo-theme=white-signal] body header small{color:var(--muted);font-size:12px}
+html[data-neo-theme=white-signal] body .panel,html[data-neo-theme=white-signal] body .noob-card{border:1px solid var(--line);border-radius:0;background:var(--panel);box-shadow:none}
+html[data-neo-theme=white-signal] body h2,html[data-neo-theme=white-signal] body h3,html[data-neo-theme=white-signal] body label{color:var(--neo-text)}
+html[data-neo-theme=white-signal] body button,html[data-neo-theme=white-signal] body a.button{border:1px solid var(--line);border-radius:0;background:var(--panel);color:var(--neo-text);box-shadow:none!important;transition:background-color .13s,color .13s,border-color .13s}
+html[data-neo-theme=white-signal] body button:not(:disabled):hover,html[data-neo-theme=white-signal] body a.button:not([aria-disabled=true]):hover{background:#d6dfef;border-color:#879fc9;box-shadow:none;transform:none}
+html[data-neo-theme=white-signal] body .primary,html[data-neo-theme=white-signal] body .primary:hover,html[data-neo-theme=white-signal] body #noobDownload.inwoum-download-ready,html[data-neo-theme=white-signal] body a.button.inwoum-download-ready{background:#1748e9!important;color:#fff!important;border-color:#1748e9!important;box-shadow:none!important}
+html[data-neo-theme=white-signal] body input,html[data-neo-theme=white-signal] body select,html[data-neo-theme=white-signal] body textarea{background:var(--neo-field);color:var(--neo-text);border:1px solid var(--line);border-radius:0;box-shadow:none}
+html[data-neo-theme=white-signal] body input[type=checkbox],html[data-neo-theme=white-signal] body input[type=radio]{accent-color:#101116}
+html[data-neo-theme=white-signal] body .mode-tabs,html[data-neo-theme=white-signal] body .neo-header-preferences{border:1px solid var(--line);border-radius:0;background:var(--panel);box-shadow:none}
+html[data-neo-theme=white-signal] body .neo-header-fields{gap:16px}
+html[data-neo-theme=white-signal] body .inwoum-theme-control:has(#inwoumTheme){display:none}
+html[data-neo-theme=white-signal] body .neo-header-version,html[data-neo-theme=white-signal] body .badge,html[data-neo-theme=white-signal] body .noob-state-tag{border-radius:0;background:transparent;box-shadow:none;color:var(--muted)}
+html[data-neo-theme=white-signal] body .neo-version-dot{background:var(--green)}
+html[data-neo-theme=white-signal] body .neo-tasks{gap:0;border:1px solid var(--line)}
+html[data-neo-theme=white-signal] body .neo-task{border:0;border-right:1px solid var(--line);border-radius:0;min-height:72px;padding:12px;gap:9px}
+html[data-neo-theme=white-signal] body .neo-task:last-child{border-right:0}
+html[data-neo-theme=white-signal] body .neo-task-icon{width:28px;height:30px;border-radius:0;box-shadow:none;background:transparent;color:var(--green)}
+html[data-neo-theme=white-signal] body .neo-task[aria-pressed=true] .neo-task-icon{background:transparent}
+html[data-neo-theme=white-signal] body .neo-task small{color:var(--muted)}
+html[data-neo-theme=white-signal] body #noobWorkspace{grid-template-columns:minmax(0,1fr);max-width:1060px;gap:20px}
+html[data-neo-theme=white-signal] body .noob-intro{padding:6px 0 12px}
+html[data-neo-theme=white-signal] body .noob-intro h2{font-size:23px;font-weight:500}
+html[data-neo-theme=white-signal] body .neo-sales-style,html[data-neo-theme=white-signal] body .key-controls [role=status]{background:transparent;border-radius:0;box-shadow:none}
+html[data-neo-theme=white-signal] body .pro-progress,html[data-neo-theme=white-signal] body .token-panel,html[data-neo-theme=white-signal] body .subtitle-rules,html[data-neo-theme=white-signal] body .inwoum-mascot-row{background:var(--neo-field);border:1px solid var(--line);border-radius:0;box-shadow:none}
+html[data-neo-theme=white-signal] body .pro-progress-track{border:0;border-radius:0;background:#c5d0e3;box-shadow:none}
+html[data-neo-theme=white-signal] body #proProgressFill,html[data-neo-theme=white-signal] body #noobProgressFill,html[data-neo-theme=white-signal] body #subtitleFill{border-radius:0;background:var(--green)}
+html[data-neo-theme=white-signal] body .token-values strong,html[data-neo-theme=white-signal] body .token-cost strong,html[data-neo-theme=white-signal] body .noob-meta strong{color:var(--neo-text)}
+html[data-neo-theme=white-signal] body .subtitle-tool{border-radius:0;box-shadow:none;border-color:var(--line)}
+html[data-neo-theme=white-signal] body .subtitle-tool em{border-radius:0;color:var(--green)}
+html[data-neo-theme=white-signal] body .neo-orb-body{--neo-orb-top:#d8e4ff;--neo-orb-bottom:#567ce7;background:radial-gradient(circle at 30% 22%,#f6f9ff,#a6bdf8 57%,#567ce7);border:1px solid #1748e9;box-shadow:none}
+html[data-neo-theme=white-signal] body .neo-orb-eye{background:#14254d;box-shadow:none}
+html[data-neo-theme=white-signal] body .neo-orb-mouth{border-color:#14254d}
+html[data-neo-theme=white-signal] body .inwoum-mascot-row[data-state=done] .neo-orb-eye{background:transparent;border-color:#14254d}
+html[data-neo-theme=white-signal] body .noob-error,html[data-neo-theme=white-signal] body .error{color:#a6292d!important}
+html[data-neo-theme=white-signal] body dialog{background:var(--panel);color:var(--neo-text);border:1px solid var(--line);border-radius:0;box-shadow:0 12px 40px #14254d26}
+html[data-neo-theme=white-signal] body .subtitle-cue,html[data-neo-theme=white-signal] body .unit{border-color:var(--line)}
+/* Explicit contrast for pressed/selected controls, including their icons and hints. */
+html[data-neo-theme=white-signal] body button:not(:disabled):active,
+html[data-neo-theme=white-signal] body button[aria-pressed=true],
+html[data-neo-theme=white-signal] body button[aria-selected=true],
+html[data-neo-theme=white-signal] body .mode-tabs button[aria-selected=true],
+html[data-neo-theme=white-signal] body .neo-task[aria-pressed=true],
+html[data-neo-theme=white-signal] body a.button:not([aria-disabled=true]):active,
+html[data-neo-theme=white-signal] body .subtitle-tool:has(input:checked){background:#101116!important;color:#fff!important;border-color:#101116!important;box-shadow:none!important;transform:none}
+html[data-neo-theme=white-signal] body button:is(:active,[aria-pressed=true],[aria-selected=true]) *,
+html[data-neo-theme=white-signal] body .subtitle-tool:has(input:checked) *{color:#fff!important}
+html[data-neo-theme=white-signal] body button:is(:active,[aria-pressed=true],[aria-selected=true])::before,
+html[data-neo-theme=white-signal] body a.button:active::before{background-color:#fff!important}
+html[data-neo-theme=white-signal] body button:focus-visible,html[data-neo-theme=white-signal] body a:focus-visible{outline:2px solid #1748e9;outline-offset:3px}
+@media(max-width:900px){html[data-neo-theme=white-signal] body header{flex-wrap:wrap;min-height:180px}html[data-neo-theme=white-signal] body .neo-tasks{gap:0}html[data-neo-theme=white-signal] body .neo-task{border-bottom:1px solid var(--line)}}

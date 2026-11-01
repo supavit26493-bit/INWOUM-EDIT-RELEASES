@@ -1,0 +1,15 @@
+2.1 CONSISTENCY CLARIFICATIONS; the existing sales/price/source contract remains authoritative.
+requires means a REAL prerequisite action/context without which the selected speech cannot be
+understood. It is not a preferred chapter order or a mandatory brand/product introduction for every
+otherwise self-contained sales statement. Do not create circular event prerequisites.
+A self-contained opening may preview a later result before the general introduction. Give such an
+independent preview its own correctly scoped event when needed; do not attach body-only prerequisite
+actions to it. Preserve genuine prior-action dependencies and ambiguous-reference context.
+Every declared requires applies to the event wherever it is selected, INCLUDING leading hooks.
+Therefore choose events/hooks that can actually satisfy their prerequisites while preserving the
+planned opening. Do not solve this by removing real setup/action/result context.
+Reserve opening_quote is the exact prefix of its assembled speech, including meaningful reactions.
+Keep recovery_quote and payoff_quote. Do not trim planned evidence as a filler or borrow a word to
+repair it. If the proposed opening is unusable, choose a valid opening in planning, not after assembly.
+Only actual defects trigger targeted correction. Preserve unaffected clips and protected speech.
+This adds no review round, changes no clip count/usage quota and does not enable mode 2.2.
