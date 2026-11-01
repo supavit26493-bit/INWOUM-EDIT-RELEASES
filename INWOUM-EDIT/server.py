@@ -18,6 +18,7 @@ import webbrowser
 import bootstrap
 import engine
 import runtime_contract as runtime
+import runtime_session
 import app_updater
 UPDATE_NONCE = os.environ.pop('INWOUM_UPDATE_NONCE', '')
 
@@ -281,7 +282,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             path = unquote(urlparse(self.path).path)
             if path == '/update-health':
-                self.send_json(dict(version=runtime.VERSION,update_nonce=UPDATE_NONCE))
+                self.send_json(dict(version=runtime.VERSION,update_nonce=UPDATE_NONCE,instance_id=runtime_session.identity(bootstrap.ROOT),pid=os.getpid()))
                 return
             if path == '/update-ui.js':
                 self.send_file(bootstrap.ROOT / 'web' / 'update-ui.js')
@@ -659,27 +660,41 @@ def main():
     parser.add_argument('--port', type=int, default=8772)
     parser.add_argument('--no-browser', action='store_true')
     args = parser.parse_args()
-    JOB_ROOT.mkdir(exist_ok=True)
-    for f in JOB_ROOT.glob('*/status.json'):
-        try:
-            job = json.loads(f.read_text(encoding='utf8'))
-            if job['id'] != f.parent.name:
-                continue
-            if job.get('status') == 'running':
-                job.update(status='interrupted', message='งานหยุดเมื่อปิดโปรแกรม กดทำต่อได้')
-            job['cancel'] = threading.Event()
-            JOBS[job['id']] = job
-        except (ValueError, KeyError, OSError):
-            continue
+    instance_lock=runtime_session.Lock(bootstrap.ROOT)
+    if not instance_lock.acquire():
+        for _ in range(60):
+            found=runtime_session.existing(bootstrap.ROOT,args.port)
+            if found:
+                print('INWOUM EDIT already running: '+found['url'],flush=True)
+                if not args.no_browser:webbrowser.open(found['url'])
+                return
+            time.sleep(.25)
+        raise RuntimeError('The existing server is starting or closing. Try again shortly.')
     try:
-        server = LocalHTTPServer(('127.0.0.1', args.port), Handler)
-    except OSError:
-        server = LocalHTTPServer(('127.0.0.1', 0), Handler)
-    url = f'http://127.0.0.1:{server.server_port}'
-    print('AI EDIT FAST: ' + url, flush=True)
-    if not args.no_browser:
-        webbrowser.open(url)
-    server.serve_forever()
+        JOB_ROOT.mkdir(exist_ok=True)
+        for f in JOB_ROOT.glob('*/status.json'):
+            try:
+                job = json.loads(f.read_text(encoding='utf8'))
+                if job['id'] != f.parent.name:
+                    continue
+                if job.get('status') == 'running':
+                    job.update(status='interrupted', message='งานหยุดเมื่อปิดโปรแกรม กดทำต่อได้')
+                job['cancel'] = threading.Event()
+                JOBS[job['id']] = job
+            except (ValueError, KeyError, OSError):
+                continue
+        try:
+            server = LocalHTTPServer(('127.0.0.1', args.port), Handler)
+        except OSError:
+            server = LocalHTTPServer(('127.0.0.1', 0), Handler)
+        url = f'http://127.0.0.1:{server.server_port}'
+        runtime_session.register(bootstrap.ROOT,url)
+        print('INWOUM EDIT: ' + url, flush=True)
+        if not args.no_browser:
+            webbrowser.open(url)
+        try:server.serve_forever()
+        finally:server.server_close()
+    finally:instance_lock.release()
 
 
 if __name__ == '__main__':
