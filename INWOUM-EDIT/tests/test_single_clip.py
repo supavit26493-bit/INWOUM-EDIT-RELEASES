@@ -39,15 +39,15 @@ class SingleClipTests(unittest.TestCase):
         from test_sales_continuity import unit,selection,plan
         catalog=[unit('A',['นะ'],10),unit('B',['ราคา','สองร้อยบาท'],30)]
         p=plan([selection('A',0,0),selection('B',0,0)])
-        answer={'e0':dict(selections=[selection('B',0,1)],reason='เก็บวลีครบ')}
+        answer={'e0_s0_2':dict(selections=[selection('B',0,1)],reason='เก็บวลีครบ')}
         with tempfile.TemporaryDirectory() as d,patch('parallel_requests.call',return_value=answer) as send:
             result,_=flow.repair(p,catalog,Path(d),'dummy',dict(instructions='SINGLE ONLY',text=dict(format={})),lambda **kw:None,content_mode='single')
             self.assertEqual(result['edits'][0]['selections'],[selection('B',0,1)])
-            self.assertEqual(send.call_args.args[3],'single-continuity-repair-v1')
+            self.assertEqual(send.call_args.args[3],'single-local-continuity-repair-v2')
             self.assertNotIn('SALES EDITORIAL CONTRACT',send.call_args.args[0]['instructions'])
             self.assertTrue((Path(d)/'single-continuity-repair.json').exists())
         catalog[1]['protected']=True
-        answer={'e0':dict(selections=[selection('A',0,0)],reason='ตัดราคา')}
+        answer={'e0_s0_2':dict(selections=[selection('A',0,0)],reason='ตัดราคา')}
         with tempfile.TemporaryDirectory() as d,patch('parallel_requests.call',return_value=answer):
             with self.assertRaisesRegex(ValueError,'ระบุให้เก็บ'):
                 flow.repair(p,catalog,Path(d),'dummy',dict(instructions='SINGLE ONLY',text=dict(format={})),lambda **kw:None,content_mode='single')

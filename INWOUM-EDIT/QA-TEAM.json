@@ -1,14 +1,14 @@
 {
   "product": "INWOUM EDIT",
-  "version": "0.15.23",
-  "automated_tests_passed": 461,
+  "version": "0.15.27",
+  "automated_tests_passed": 468,
   "checks": [
-    "Multi-size ICO loads on Windows",
-    "Launcher contains embedded Play icon",
-    "Launcher validates program folder",
-    "Desktop passes custom icon to WebView2",
-    "Shared editing backend and persistent profile retained",
-    "Opened INWOUMEDIT.exe and visually verified Play icon on desktop window"
+    "Single clip local repair scopes only affected windows",
+    "Shared event constraints avoid repeated enum values",
+    "Outside selections and protected words preserved",
+    "Invalid source bounds and event changes rejected",
+    "Sales and Original workflows retain their existing behavior",
+    "HTTP errors use safe predefined explanations"
   ],
   "paid_openai_calls": 0
 }

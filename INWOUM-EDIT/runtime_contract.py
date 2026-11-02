@@ -1,6 +1,6 @@
 import hashlib,json
 from pathlib import Path
-VERSION='0.15.23'
+VERSION='0.15.27'
 RULESET='sales-11-v4'
 from model_catalog import MODELS
 ROOT=Path(__file__).parent

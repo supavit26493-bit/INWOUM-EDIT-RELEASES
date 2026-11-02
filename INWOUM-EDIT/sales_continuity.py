@@ -95,6 +95,9 @@ def repair(plan,catalog,folder,key,base,progress,content_mode='sales'):
     import runtime_contract
     bad=findings(plan,catalog)
     if not bad:return plan,[]
+    if content_mode=='single':
+        import single_repair
+        return single_repair.repair(plan,catalog,folder,key,base,progress,bad)
     fields={};data=[];by_id={u['id']:u for u in catalog}
     for index in sorted({r['edit_index'] for r in bad}):
         edit=plan['edits'][index];ids={s['unit_id'] for s in edit['selections']};units=[by_id[uid] for uid in sorted(ids)]

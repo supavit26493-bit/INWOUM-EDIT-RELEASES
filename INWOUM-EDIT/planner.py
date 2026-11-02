@@ -144,8 +144,9 @@ def plan_once(payload, key):
         with urllib.request.urlopen(req, timeout=600) as response:
             result = json.load(response)
     except urllib.error.HTTPError as error:
-        # Never echo a request, key, or arbitrary remote response into logs.
-        raise RuntimeError(f'OpenAI HTTP {error.code}: ตรวจ API key, สิทธิ์โมเดล และเครดิต ไม่มีการลองซ้ำอัตโนมัติ') from None
+        # Only safe, predefined explanations; never echo remote text or credentials.
+        import api_errors
+        raise RuntimeError(api_errors.message(error)) from None
     except (TimeoutError, urllib.error.URLError):
         raise RuntimeError('ติดต่อ API ไม่สำเร็จหรือหมดเวลารอ คำขออาจมีค่าใช้จ่าย ไม่มีการส่งซ้ำอัตโนมัติ') from None
     usage = result.get('usage', {})
