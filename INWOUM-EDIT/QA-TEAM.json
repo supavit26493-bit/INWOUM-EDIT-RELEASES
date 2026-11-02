@@ -1,14 +1,14 @@
 {
   "product": "INWOUM EDIT",
-  "version": "0.15.27",
-  "automated_tests_passed": 468,
+  "version": "0.15.28",
+  "automated_tests_passed": 473,
   "checks": [
-    "Single clip local repair scopes only affected windows",
-    "Shared event constraints avoid repeated enum values",
-    "Outside selections and protected words preserved",
-    "Invalid source bounds and event changes rejected",
-    "Sales and Original workflows retain their existing behavior",
-    "HTTP errors use safe predefined explanations"
+    "Exact short clause-opening overlap repaired locally",
+    "Non-overlapping selections and event IDs unchanged",
+    "Protected units and ambiguous overlaps retained for review",
+    "Full saved single-clip workflow exported XML with network disabled",
+    "Completed API response caches reused; no added paid calls",
+    "Sales and Original workflows keep existing behavior"
   ],
   "paid_openai_calls": 0
 }

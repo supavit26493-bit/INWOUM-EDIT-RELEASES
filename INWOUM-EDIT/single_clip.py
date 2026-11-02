@@ -142,6 +142,11 @@ def run(catalog,folder,config,key,progress,project,silence):
             plan,changes=sales_continuity.clean(plan,catalog)
             plan.setdefault('speech_cleanup',[]).extend(changes)
             save(folder/'single-continuity.json',dict(style=style,repair_findings=issues,cleanup=plan['speech_cleanup'],manual_edits=False))
+        if style in ('natural','natural_v2') and method=='rearrange':
+            import single_overlap
+            plan,overlap_changes=single_overlap.repair(plan,catalog)
+            save(folder/'single-overlap-cleanup.json',dict(policy=single_overlap.POLICY,changes=overlap_changes,api_calls_added=0))
+            if overlap_changes:progress(message=f'คลิปเดี่ยว: แก้ขอบคำต้นฉบับซ้ำ {len(overlap_changes)} จุด · ไม่เรียก API เพิ่ม')
         if event_mode and episode_continuity.findings(plan,catalog,single=True):raise ValueError('การเกลาคำทำให้บริบทเหตุการณ์ไม่ครบ จึงยังไม่ส่งออก')
         if event_mode:episode_continuity.record(plan,catalog,folder)
         save(folder/'single-draft-before-duration-check.json',plan)
