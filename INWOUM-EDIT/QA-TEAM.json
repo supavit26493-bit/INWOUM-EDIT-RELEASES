@@ -1,14 +1,14 @@
 {
   "product": "INWOUM EDIT",
-  "version": "0.15.28",
-  "automated_tests_passed": 473,
+  "version": "0.15.29",
+  "automated_tests_passed": 478,
   "checks": [
-    "Exact short clause-opening overlap repaired locally",
-    "Non-overlapping selections and event IDs unchanged",
-    "Protected units and ambiguous overlaps retained for review",
-    "Full saved single-clip workflow exported XML with network disabled",
-    "Completed API response caches reused; no added paid calls",
-    "Sales and Original workflows keep existing behavior"
+    "Complete alternate reserve may reuse main footage",
+    "Exact full-order duplicate still rejected regardless of segmentation",
+    "Optional invalid reserves retained with reasons; main clips unchanged",
+    "Real saved job exported 3 main clips plus 1 reserve using existing API caches",
+    "Network disabled during saved-job export verification",
+    "No changes to planning requests; no added paid calls"
   ],
   "paid_openai_calls": 0
 }

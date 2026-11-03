@@ -204,8 +204,12 @@ This is a text draft checkpoint; no XML or listening approval.''',
             reserve_audit=sales_reserve.audit_plan(plan,catalog)
             save(folder/'reserve-validation.json',reserve_audit)
             if reserve_audit['invalid']:
-                labels=', '.join(str(r['map_id']) for r in reserve_audit['invalid'])
-                raise ValueError('เทคสำรองประกอบไม่ครบ: '+labels+' · ดู reserve-validation.json · เก็บคำตอบเดิมไว้แล้ว')
+                if config.get('sales_style')=='sales_2_1':
+                    plan=sales_reserve.hold_invalid(plan,reserve_audit,folder)
+                    progress(message=plan['pending_reserve_warning']+' · ไม่เรียก API เพิ่ม')
+                else:
+                    labels=', '.join(str(r['map_id']) for r in reserve_audit['invalid'])
+                    raise ValueError('เทคสำรองประกอบไม่ครบ: '+labels+' · ดู reserve-validation.json · เก็บคำตอบเดิมไว้แล้ว')
             sales_reserve.validate_plan(plan,catalog)
             save(folder/'reserve-takes.json',dict(policy=sales_reserve.POLICY,edits=[e for e in plan['edits'] if e.get('edit_role')=='reserve'],additional_planning_calls=0))
         import hook_library

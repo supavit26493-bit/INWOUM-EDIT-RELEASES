@@ -122,13 +122,39 @@ def label_plan(plan,catalog):
 
 def audit_plan(plan,catalog):
     """Explain incomplete reserves without altering any selections or calling AI."""
-    main=[e for e in plan['edits'] if e.get('edit_role')!='reserve'];rows=[]
+    main=[e for e in plan['edits'] if e.get('edit_role')!='reserve'];rows=[];accepted=list(main)
+    main_words={(s['unit_id'],i) for e in main for s in e['selections'] for i in range(s['first_word'],s['last_word']+1)}
     for e in plan['edits']:
         if e.get('edit_role')!='reserve':continue
-        try:validate_plan(dict(edits=main+[e]),catalog);reason='';valid=True
+        try:validate_plan(dict(edits=accepted+[e]),catalog);reason='';valid=True;accepted.append(e)
         except ValueError as error:reason=str(error);valid=False
-        rows.append(dict(map_id=e.get('map_id'),name=e.get('name'),valid=valid,reason=reason))
+        selected={(s['unit_id'],i) for s in e['selections'] for i in range(s['first_word'],s['last_word']+1)}
+        note='ใช้ท่อนเดียวกับคลิปหลัก จัดเป็นอีกลำดับหรืออีกมุมขาย ไม่จำเป็นต้องมีข้อเท็จจริงใหม่' if valid and selected<=main_words else ''
+        rows.append(dict(map_id=e.get('map_id'),name=e.get('name'),valid=valid,reason=reason,note=note))
     return dict(clips=rows,invalid=[r for r in rows if not r['valid']],selections_changed=False,extra_api_calls=0)
+
+
+def hold_invalid(plan,audit,folder):
+    """Keep optional failed reserves for review; never rewrite or discard main clips."""
+    import copy
+    from engine import save
+    invalid={r['map_id']:r['reason'] for r in audit['invalid']}
+    if not invalid:return plan
+    result=copy.deepcopy(plan);held=[];kept=[]
+    for edit in result['edits']:
+        if edit.get('edit_role')=='reserve' and edit.get('map_id') in invalid:
+            edit['pending_reason']=invalid[edit['map_id']];held.append(edit)
+        else:kept.append(edit)
+    if not held or not any(e.get('edit_role')!='reserve' for e in kept):raise ValueError('ไม่มีคลิปหลักที่พร้อมส่งออก จึงไม่พักเทคสำรองอัตโนมัติ')
+    result['edits']=kept
+    existing=result.get('pending_reserve_edits',[])
+    result['pending_reserve_edits']=existing+held
+    result['pending_reserve_warning']=f'คลิปหลักครบ · เทคสำรอง {len(existing)+len(held)} คลิปยังไม่ผ่านตรวจ เก็บแผนและเหตุผลไว้แล้ว ไม่รวมใน XML'
+    used={s['unit_id'] for e in kept for s in e['selections']}
+    for row in result.get('source_review',[]):
+        if row['unit_id'] not in used and row.get('decision')=='used':row.update(decision='alternative',reason='อยู่ในเทคสำรองที่พักไว้ เก็บแผนและเหตุผลให้ตรวจแล้ว')
+    save(folder/'pending-reserves.json',dict(edits=result['pending_reserve_edits'],findings=audit['invalid'],main_unchanged=True,automatic_retry=False))
+    return result
 
 def validate_plan(plan,catalog):
     if sum(e.get('edit_role')=='reserve' for e in plan['edits'])>5:
@@ -138,6 +164,10 @@ def validate_plan(plan,catalog):
     units={u['id']:u for u in catalog}
     main_words={(s['unit_id'],i) for e in plan['edits'] if e.get('edit_role')!='reserve'
                 for s in e['selections'] for i in range(s['first_word'],s['last_word']+1)}
+    # Same facts/takes in a different sales assembly are allowed. Only an exact
+    # replay of a whole main sequence is redundant (ignore selection segmentation).
+    ordered=lambda e:tuple((s['unit_id'],i) for s in e['selections'] for i in range(s['first_word'],s['last_word']+1))
+    main_orders={ordered(e) for e in plan['edits'] if e.get('edit_role')!='reserve'}
     seen=set()
     for e in plan['edits']:
         if e.get('edit_role')!='reserve':continue
@@ -149,14 +179,15 @@ def validate_plan(plan,catalog):
             if not commercial and part[0]['start']<last-.001:raise ValueError('เทคสำรองเดิมต้องเรียงตามต้นฉบับ')
             last=part[-1]['end'];text.append(''.join(w['text'] for w in part))
             selected.update((s['unit_id'],i) for i in range(s['first_word'],s['last_word']+1))
-        if selected<=main_words:raise ValueError('เทคสำรองซ้ำกับท่อนหลักทั้งหมด ไม่มีเนื้อหาเพิ่มเติม')
+        if not commercial and selected<=main_words:raise ValueError('เทคสำรองเดิมซ้ำกับท่อนหลักทั้งหมด ไม่มีเนื้อหาเพิ่มเติม')
         if commercial:
             norm=lambda t:''.join(t.split());assembled=norm(''.join(text))
             if any(not isinstance(evidence.get(k),str) or not evidence[k].strip() for k in ('opening_quote','payoff_quote','recovery_quote','sales_angle')):raise ValueError('คลิปขายสำรองขาดหลักฐานความครบของเนื้อหา')
             if not assembled.startswith(norm(evidence['opening_quote'])):raise ValueError('คลิปขายสำรองไม่ได้เริ่มด้วยท่อนเปิดตามแผน')
             if norm(evidence['payoff_quote']) not in assembled or norm(evidence['recovery_quote']) not in assembled:raise ValueError('คลิปขายสำรองขาดประโยชน์หรือสาระที่ต้องการกู้มาใช้')
             if norm(evidence['opening_quote'])==norm(evidence['payoff_quote']):raise ValueError('คลิปขายสำรองยังเป็นวลีโดด')
-        signature=tuple((s['unit_id'],s['first_word'],s['last_word']) for s in picks) if commercial else frozenset(selected)
+        signature=ordered(e) if commercial else frozenset(selected)
+        if commercial and signature in main_orders:raise ValueError('เทคสำรองเหมือนคลิปหลักทั้งลำดับและช่วงคำ ไม่ใช่อีกเวอร์ชัน')
         if signature in seen:raise ValueError('เทคสำรองซ้ำกันทั้งท่อน')
         seen.add(signature)
         if quality_v8.price_findings(''.join(text)):raise ValueError('เทคสำรองมีราคาที่ห้ามใช้ จึงยังไม่ส่งออก')
